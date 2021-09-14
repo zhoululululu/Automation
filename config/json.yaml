@@ -1,0 +1,321 @@
+# IS下单
+ship_order: '{
+    "timeStamp": 1625131909816,
+    "messageId": "bad2e885076b4147921e6307971e4",
+    "data": {
+        "isId": "%s",
+        "isMasterId": "%s",
+        "orderCreatedDate": "2021-08-05T14:31:49+0800",
+        "collectionType": "0",
+        "dropSiteId": "%s",
+        "sellerAddrId": "%s",
+        "consigneeFullName": "xMan",
+        "consigneePhone": "1000011111",
+        "consigneeCountry": "%s",
+        "consigneeState": "%s",
+        "consigneeCity": "%s",
+        "consigneeAddr1": "%s",
+        "consigneeAddr2": "%s",
+        "consigneeZipCode": "%s",
+        "incoterm": 0,
+        "lengthUnit": "0",
+        "weightUnit": "0",
+        "packageInfoList": [
+            {
+                "trackingNumber": "%s",
+                "serviceId": "%s",
+                "packageTotalWeight":%.2f,
+                "packageLength": 10.0,
+                "packageWidth": 10.0,
+                "packageHeight": 10.0,
+                "insurancedValue": 2.0,
+                "currency": "%s",
+                "itemInfoList": [
+                    {
+                        "sku": "1623996116735",
+                        "skuDescCn": "尺子",
+                        "skuDesc": "rule",
+                        "skuWeight": 2000.0,
+                        "skuValue": %.2f,
+                        "currency": "%s",
+                        "transactionId": "1623996116735-1623996116735",
+                        "quantity": 1,
+                        "link": "http://www.ebay.com/itm/1623996116735",
+                        "txnUnitPrice": 5,
+                        "txnQty": 1,
+                        "skuListingDesc": "Tissue paper"
+                    }
+                ],
+                "packageDesc": "rule",
+                "packageDescCn": "尺子",
+                "packageId": "930093704194457692"
+            }
+        ],
+        "sendProvinceName": "广东省",
+        "deliveryTime": "Aug 5, 2021 5:31:49 PM"
+    }
+}'
+# 打标
+get_letter_dg: '{
+  "facilitycode": "%s",
+  "operateUser": "ZL",
+  "superTrackingNumberList": [
+    {
+      "superTrackingNumber": "%s",
+      "code": "1",
+      "scanTime": "%s"
+    }
+  ]
+}'
+get_letter_not_dg: '{
+  "data": {
+    "facilitycode":"%s",
+    "operateUser":"ZL",
+    "superTrackingNumberList":[
+      {
+        "superTrackingNumber":"%s",
+        "code":"1",
+        "scanTime":"%s"
+      }
+    ]
+  },
+  "timeStamp": "%s",
+  "messageId": "201907041026540004"
+}
+'
+
+# dg换单
+get_label_dg: '{
+  "scanPackageTime": "%s",
+  "packageWeight": "%s",
+  "trackingNumber": "%s",
+  "endStatus": "null",
+  "packageheight": 10,
+  "packagewidth": 10,
+  "packagelength": 40
+}'
+# 非dg换单
+get_label_not_dg: '{
+	"data":
+	{
+		"scanPackageTime":"%s",
+		"packageWeight":"%s",
+		"trackingNumber":"%s",
+		"facilityCode":"%s",
+		"referenceNumber":"null",
+		"operateUser":"ZL"
+		},
+		"messageId":"201708141026540001",
+		"timestamp":"%s"
+}'
+
+# 建包
+bu_bag: '{
+  "data":{
+    "facilityCode": "%s",
+    "operateUser":"ZL",
+    "temporaryBagNo":"AP2018112800016",
+    "bagRealWeight":"%s",
+    "weightUnit":0,
+    "bagRealVolume":10.0,
+    "volumeUnit":1,
+    "battery":"%s",
+    "firstSortingResult":"%s",
+    "sortingResult":"%s",
+    "endBagTime":"%s",
+    "packageInfoList":
+    [
+      {
+        "lastmileTrackingNumber":"%s"
+      }],
+    "bagLength": 40,
+	"bagWidth": 10,
+	"bagHeight": 30},
+  "messageId":"201908141026540002",
+  "timestamp":"%s"
+}'
+# 获取比邮大包号
+get_last_mile_bag: '{
+    "data": {
+        "facilityCode": "%s",
+        "quantity": 1,
+        "requestTime": "%s"
+    },
+    "messageId": "201908141026540002",
+    "timestamp": "%s"
+}'
+
+#负重
+bag_weight: '{
+  "bag_real_weight": "%s",
+  "bagNo": "%s",
+  "operationTime": "%s"
+}'
+
+# 出库
+out_package: '{
+  "data": {
+    "bagInfoList": [
+      {
+        "bagId": "%s",
+        "scanBagTime": "%s"
+      } ],
+    "deliveryNo": "%s",
+    "deliveryTime": "%s",
+    "expectedArrivalTime": "%s",
+    "driverContactName": "HOAU",
+    "driverContactPhone": "1223333",
+    "transportation": 1,
+    "transportationInfo": "粤A36636",
+    "departure": "YW006",
+    "destination": "DHL-SHA",
+    "vehicleload": 1
+  },
+  "messageId": "1620962743000",
+  "timestamp": "%s"
+}'
+consignee:
+  # 加拿大
+  CA:
+    consigneeState: "New Brunswick"
+    consigneeCity: "Lancaster"
+    consigneeZipCode: "U7Y9V8"
+    address: "27 Sawgrass Lane,address2"
+    address2: ""
+  # 澳大利亚
+  AU:
+    #    South Australia 5086 Western Australia 6157
+    consigneeState: "South Australia"
+    consigneeCity: "Palmyra"
+    consigneeZipCode: "5086"
+    address: "Obere Kr?blitzer Str. 7"
+    address2: ""
+  # 德国
+  DE:
+    consigneeState: "Germany"
+    consigneeCity: "Stuttgart"
+    consigneeZipCode: "70327"
+    address: "Schlotterbeckstraße 17"
+    address2: "ssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsa"
+
+  # 美国
+  US:
+    consigneeState: "NewYork"
+    consigneeCity: "Brooklyn"
+    consigneeZipCode: "11234"
+    address: "Obere Kr?blitzer Str. 7"
+    address2: ""
+
+  # 英国
+  GB:
+    consigneeState: "United Kingdom"
+    consigneeCity: "Leicester"
+    consigneeZipCode: "14086"
+    address: "Obere Kr?blitzer Str. 7"
+    address2: "ssssdsadas"
+
+  # 塞浦路斯
+  CY:
+    consigneeState: "paphos"
+    consigneeCity: "chloraka"
+    consigneeZipCode: "8220"
+    address: "Obere Kr?blitzer Str. 7"
+    address2: ""
+  # 意大利
+  IT:
+    consigneeState: "Italy"
+    consigneeCity: "modena"
+    consigneeZipCode: "41122"
+    address: "The Old Creamery"
+    address2: "ssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsa"
+  # 爱尔兰
+  IE:
+    consigneeState: "Clare"
+    consigneeCity: "modena"
+    consigneeZipCode: "41122"
+    address: "The Old Creamery"
+    address2: ""
+  #匈牙利
+  HU:
+    consigneeState: "Hungary"
+    consigneeCity: "Békéscsaba"
+    consigneeZipCode: "5600"
+    address: "Táncsics utca 6-10"
+    address2: ""
+  #立陶宛
+  LT:
+    consigneeState: "Lithuania"
+    consigneeCity: "Ukmerge"
+    consigneeZipCode: "20180"
+    address: "Anyksciu 25-31"
+    address2: ""
+  # 法国
+  FR:
+    consigneeState: "France"
+    consigneeCity: "valreas"
+    consigneeZipCode: "84600"
+    address: "14 rue saint jean au fong"
+    address2: "ssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsa"
+  #马耳他
+  MT:
+    consigneeState: "Zabbar"
+    consigneeCity: "Zabbar"
+    consigneeZipCode: "ZBR2725"
+    address: "71 Kuncizzjoni, triq il-Qaqocc"
+    address2: ""
+  ## 塞浦路斯
+  EE:
+    consigneeState: "afddffd"
+    consigneeCity: "Lancaster"
+    consigneeZipCode: "14086"
+    address: "27 Sawgrass Lane"
+    address2: ""
+
+  IL:
+    consigneeState: "afddffd"
+    consigneeCity: "Lancaster"
+    consigneeZipCode: "90525"
+    address: "27 Sawgrass Lane"
+    address2: ""
+
+  MX:
+    consigneeState: "afddffd"
+    consigneeCity: "Lancaster"
+    consigneeZipCode: "89018"
+    address: "27 Sawgrass Lane"
+    address2: ""
+
+  SE:
+    consigneeState: "state"
+    consigneeCity: "Lancaster"
+    consigneeZipCode: "90525"
+    address: "27 Sawgrass Lane"
+    address2: ""
+
+  NL:
+    consigneeState: "state"
+    consigneeCity: "Lancaster"
+    consigneeZipCode: "90525"
+    address: "27 Sawgrass Lane"
+    address2: ""
+
+  GR:
+    consigneeState: "state"
+    consigneeCity: "Lancaster"
+    consigneeZipCode: "90525"
+    address: "27 Sawgrass Lane"
+    address2: ""
+
+  DK:
+    consigneeState: "state"
+    consigneeCity: "Lancaster"
+    consigneeZipCode: "90525"
+    address: "27 Sawgrass Lane"
+    address2: ""
+  # 西班牙
+  ES:
+    consigneeState: "Pennsylvania"
+    consigneeCity: "erie"
+    consigneeZipCode: "16505"
+    address: "12571 Stillwater Crk"
+    address2: "ssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsa"

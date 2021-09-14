@@ -1,0 +1,45 @@
+Email:
+  #所测试服务描述
+  service: OC
+  #版本
+  version: v2.1
+  #测试人员
+  tester: ZL
+  #邮件备注
+  remark: 请下载附件查看报告
+  #是否发送邮件，on-发送，off-不发送
+  is_send: on
+  # 发件人邮箱
+  user: 609200751@qq.com
+  # 发件人邮箱授权码
+  password: kludwvejeviybcfd
+  # 邮箱host
+  host: smtp.qq.com
+  # 收件人邮箱,linrq@kuaishang.cn,wuhui@kuaishang.com.cn,wujq@kuaishang.cn
+  rec_users: [ "Lu.Zhou@itiaoling.com" ]
+  title: OC
+
+TEST_AQ:
+  db_host: 10.39.232.61
+  db_port: 3307
+  user_name: aquarius_user
+  user_pwd: aquarius_user
+  db: aquarius
+
+TEST_DG:
+  db_host: 10.39.232.61
+  db_port: 3307
+  user_name: aquarius_user
+  user_pwd: aquarius_user
+  db: scorpio_dev2
+
+TEST_JX:
+  db_host: 10.39.232.61
+  db_port: 3307
+  user_name: aquarius_user
+  user_pwd: aquarius_user
+  db: scorpio_jx
+
+PRO-REDIS:
+  redis_ip: 10.12.8.11
+  redis_port: 6379

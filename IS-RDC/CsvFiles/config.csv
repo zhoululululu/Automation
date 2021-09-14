@@ -1,0 +1,2 @@
+ocip,oc_port,ascan,ascn_port,ip,port,rdcinip,rdcinport,rdc,port,rdcoverip,rdcoverport,rdcoutip,rdcoutiport
+10.39.232.54,8484,testapi.orangeconnex.com,8480,testapi.orangeconnex.com,8480,10.39.232.133,7073,10.39.232.133,7073,10.39.232.133,7073,10.39.232.133,7073

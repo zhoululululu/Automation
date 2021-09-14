@@ -1,0 +1,52 @@
+{
+	"data": {
+		"collectionType": 0,
+		"consigneeAddr1": "27 Sawgrass Lane",
+		"consigneeAddr2": "address2",
+		"consigneeCity": "Lancaster",
+		"consigneeCountry": "US",
+		"consigneeFullName": "xMan 43",
+		"consigneePhone": "11231234566",
+		"consigneeState": "NewYork",
+		"consigneeZipCode": "14086",
+		"dropSiteId": "RFD276",
+		"incoterm": 0,
+		"isId": "2220040455552376",
+		"isMasterId": "2220040455552376",
+		"lengthUnit": 0,
+		"orderCreatedDate": "2019-09-06T14:00:34+0800",
+		"origin": "IS",
+		"packageInfoList": [{
+			"currency": "USD",
+			"insurancedValue": 3.0,
+			"itemInfoList": [{
+				"currency": "USD",
+				"link": "http://www.ebay.com/itm/201909140068",
+				"quantity": 1,
+				"sku": "201909140068",
+				"skuDesc": "English name",
+				"skuDescCn": "申报名称",
+				"skuListingDesc": "Clear White Quartz Crystal Cluster Mineral Specimen 135g",
+				"skuValue": 200.00,
+				"skuWeight": 3.00,
+				"transactionId": "201909140068-201909140068",
+				"txnQty": 1,
+				"txnUnitPrice": 3.00
+			}],
+			"packageDesc": "English name",
+			"packageDescCn": "申报名称",
+			"packageHeight": 11.00,
+			"packageLength": 10.00,
+			"packageTotalWeight": 3.00,
+			"packageWidth": 12.00,
+			"preDeclaredStatus": 2,
+			"serviceId": "ES",
+			"trackingNumber": "ES1000007123408IB01010001G0A"
+		}],
+		"projectCode": "eBay",
+		"sellerAddrId": "80003354",
+		"weightUnit": 0
+	},
+	"messageId": "53c5e9e835e649c0aa4b310f0d9cc",
+	"timestamp": 1567749636407
+}

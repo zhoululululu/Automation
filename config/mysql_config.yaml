@@ -1,0 +1,165 @@
+author: "test_author"
+test:
+  host: "10.39.232.61"
+  port: 3307
+  user: "aquarius_user"
+  password: "aquarius_user"
+  database: "aquarius"
+  isId: '8772502972352061'
+  seller_addr_id: '80003354'
+  dg:
+    "collection_type": "0"
+    "drop_id": "ST518003"
+  jx:
+    "collection_type": "0"
+    "drop_id": "YW118"
+  hk:
+    "collection_type": "0"
+    "drop_id": "CTST12"
+
+taurus_test:
+  host: "10.39.232.61"
+  port: 3307
+  user: "aquarius_user"
+  password: "aquarius_user"
+  database: "taurus"
+
+pre:
+  host: "10.39.232.62"
+  port: 3307
+  user: "aquarius_user"
+  password: "aquarius_user"
+  database: "aquarius"
+  isId: '2839139448256143'
+  seller_addr_id: '112'
+  dg:
+    "collection_type": "0"
+    "drop_id": "ST518003"
+  jx:
+    "collection_type": "0"
+    "drop_id": "5769"
+  hk:
+    "collection_type": "0"
+    "drop_id": "CTST11"
+
+taurus_pre:
+  host: "10.39.232.62"
+  port: 3307
+  user: "aquarius_user"
+  password: "aquarius_user"
+  database: "taurus"
+
+stage:
+  host: "10.39.232.216"
+  port: 3306
+  user: "aquarius_user"
+  password: "aquarius_user"
+  database: "aquarius"
+  isId: '2835151170368532'
+  seller_addr_id: '80006919'
+  dg:
+    "collection_type": "0"
+    "drop_id": "ST514000"
+
+taurus_stage:
+  host: "10.39.232.216"
+  port: 3306
+  user: "taurus_user"
+  password: "taurus_user"
+  database: "taurus"
+
+oc_dev:
+  host: "10.39.232.61"
+  port: 3307
+  user: "aquarius_dev"
+  password: "aquarius_dev"
+  database: "aquarius_dev"
+  url: 'http://10.39.232.52:8484/is/v1/ship-order'
+
+dg_test:
+  host: "10.39.232.61"
+  port: 3307
+  user: "aquarius_user"
+  password: "aquarius_user"
+  database: "scorpio_dev2"
+
+dg_pre:
+  host: "10.37.12.21"
+  port: 3306
+  user: "scorpio"
+  password: "test123"
+  database: "scorpio"
+
+dg_stage:
+  host: "10.39.232.216"
+  port: 3306
+  user: "scorpio_user"
+  password: "scorpio_user"
+  database: "scorpio_dg"
+
+jx_test:
+  host: "10.39.232.61"
+  port: 3307
+  user: "scorpio_jx"
+  password: "sc2o3r5pi6o_75jx"
+  database: "scorpio_jx"
+
+jx_pre:
+  host: "10.39.232.61"
+  port: 3307
+  user: "scorpio_prejx"
+  password: "test123"
+  database: "scorpio_prejx"
+
+jx_stage:
+  host: "10.39.232.216"
+  port: 3306
+  user: "scorpio_user"
+  password: "scorpio_user"
+  database: "scorpio_sino"
+
+hk_test:
+  host: "10.39.232.61"
+  port: 3307
+  user: "scorpio"
+  password: "test123"
+  database: "scorpio_hk"
+
+hk_pre:
+  host: "10.39.232.61"
+  port: 3307
+  user: "scorpio"
+  password: "test123"
+  database: "scorpio_prehk"
+
+pro:
+  host: "10.39.232.61"
+  port: 3307
+  user: "scorpio"
+  password: "test123"
+  database: "scorpio_prehk"
+
+pro_oc:
+  host: "10.238.30.20"
+  port: 3307
+  user: "test_read"
+  password: "B4FBE5D0EEBF64595FC022134B"
+  database: "aquarius"
+  ssh_host: "139.219.187.236"
+  ssh_port: 22
+  ssh_user: "appman"
+  ssh_password: "ZU$O%RGk&ApElAw51k"
+
+pro_dg:
+  host: "10.37.14.10"
+  port: 3307
+  user: "scor_sel"
+  password: "2FA31AE3D5113A080C0B8E"
+  database: "scorpio"
+
+pro_jx:
+  host: "10.30.30.21"
+  port: 3307
+  user: "scorjx_read"
+  password: "A9FFC868C40F3CD42318B0"
+  database: "scorpio_prodjx"

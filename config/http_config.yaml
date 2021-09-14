@@ -1,0 +1,152 @@
+dg_test:
+  validation_url: 'http://10.39.232.54:8080/validation'
+  ship_order: 'http://10.39.232.52:8484/is/v1/ship-order'
+  # 分拣编号:
+  sort_code: "05"
+  drop_site_id: "RFD1339"
+  # 打标接口
+  get_letter: "http://10.39.232.133:8088/scorpio/api/waybill/letter/v1/letter"
+  # 换单接口
+  get_label: "http://10.39.232.133:8088/scorpio/api/packages/v1/package"
+  # 建包接口
+  bu_bag: "http://10.39.232.133:8088/scorpio/api/vendor/rfd/last_mile_bags/v1"
+  # 获取比邮大包号
+  get_last_mile_bag: "http://10.39.232.133:8088/scorpio/api/vendor/sino/last_mile_bags/v1/section"
+  #负重接口
+  bag_weight: "http://10.39.232.133:8088/scorpio/api/lastmile/v1/bag/weight"
+  # 出库接口
+  out_package: "http://10.39.232.133:8088/scorpio/api/vendor/sino/last_mile_bags/v1/delivery"
+
+jx_test:
+  validation_url: 'http://10.39.232.54:8080/validation'
+  ship_order: 'http://10.39.232.52:8484/is/v1/ship-order'
+  # 分拣编号:
+  sort_code: "08"
+  drop_site_id: "YW06"
+  # 打标接口
+  get_letter: "http://10.39.232.49:9108/api/vendor/sino/waybill/letter/v1/letter"
+  # 换单接口
+  get_label: "http://10.39.232.49:9108/api/vendor/jx/package/v1/packages"
+  # 获取比邮大包号
+  get_last_mile_bag: "http://10.39.232.49:9108/api/vendor/sino/last_mile_bags/v1/section"
+  # 建包接口
+  bu_bag: "http://10.39.232.49:9108/api/vendor/sino/last_mile_bags/v1"
+  # 出库接口
+  out_package: "http://10.39.232.49:9108/api/vendor/sino/last_mile_bags/v1/delivery"
+
+hk_test:
+  validation_url: 'http://10.39.232.54:8080/validation'
+  ship_order: 'http://10.39.232.52:8484/is/v1/ship-order'
+  # 分拣编号:
+  sort_code: "07"
+  drop_site_id: "CTST14"
+  # 打标接口
+  get_letter: ""
+  # 换单接口
+  get_label: "http://testx.orangeconnex.com:9091/api/vendor/hk/package/v1/packages"
+  # 获取比邮大包号
+  get_last_mile_bag: "http://testx.orangeconnex.com:9091/api/vendor/sino/last_mile_bags/v1/section"
+  # 建包接口
+  bu_bag: "http://testx.orangeconnex.com:9091/api/vendor/hk/last_mile_bags/v1"
+  #负重接口
+  bag_weight: ""
+  # 出库接口
+  out_package: "http://testx.orangeconnex.com:9091/api/vendor/hk/last_mile_bags/v1/delivery"
+
+dg_pre:
+  validation_url: 'http://10.39.232.52:8080/validation'
+  ship_order: 'http://10.39.232.56:9200/is/v1/ship-order'
+  # 分拣编号:
+  sort_code: "05"
+  drop_site_id: "RFD1339"
+  # 打标接口
+  get_letter: "http://10.37.12.21:9099/scorpio/api/waybill/letter/v1/letter"
+  # 换单接口
+  get_label: "http://10.37.12.21:8088/scorpio/api/packages/v1/package"
+  # 建包接口
+  bu_bag: "http://10.37.12.21:8088/scorpio/api/vendor/rfd/last_mile_bags/v1"
+  # 获取比邮大包号
+  get_last_mile_bag: "http://10.37.12.21:8088/scorpio/api/vendor/sino/last_mile_bags/v1/section"
+  #负重接口
+  bag_weight: "http://10.37.12.21:9099/scorpio/api/lastmile/v1/bag/weight"
+  # 出库接口
+  out_package: "http://10.37.12.21:8088/scorpio/api/vendor/sino/last_mile_bags/v1/delivery"
+
+jx_pre:
+  validation_url: 'http://10.39.232.52:8080/validation'
+  ship_order: 'http://10.39.232.56:9200/is/v1/ship-order'
+  # 分拣编号:
+  sort_code: "08"
+  drop_site_id: "5769"
+  # 打标接口
+  get_letter: "http://180.168.45.28:9118/api/vendor/sino/waybill/letter/v1/letter"
+  # 换单接口
+  get_label: "http://180.168.45.28:9118/api/vendor/jx/package/v1/packages"
+  # 获取比邮大包号
+  get_last_mile_bag: "http://180.168.45.28:9108/api/vendor/sino/last_mile_bags/v1/section"
+  # 建包接口
+  bu_bag: "http://180.168.45.28:9118/api/vendor/sino/last_mile_bags/v1"
+  #负重接口
+  bag_weight: ""
+  # 出库接口
+  out_package: "http://180.168.45.28:9118/api/vendor/sino/last_mile_bags/v1/delivery"
+
+hk_pre:
+  validation_url: 'http://10.39.232.52:8080/validation'
+  ship_order: 'http://10.39.232.56:9200/is/v1/ship-order'
+  # 分拣编号:
+  sort_code: "07"
+  drop_site_id: "CTST13"
+  # 打标接口
+  get_letter: ""
+  # 换单接口
+  get_label: "http://testx-pr.orangeconnex.com:9092/api/vendor/hk/package/v1/packages"
+  # 获取比邮大包号
+  get_last_mile_bag: "http://testx-pr.orangeconnex.com:9092/api/vendor/sino/last_mile_bags/v1/section"
+  # 建包接口
+  bu_bag: "http://testx-pr.orangeconnex.com:9092/api/vendor/hk/last_mile_bags/v1"
+  #负重接口
+  bag_weight: ""
+  # 出库接口
+  out_package: "http://testx-pr.orangeconnex.com:9092/api/vendor/hk/last_mile_bags/v1/delivery"
+
+dg_stage:
+  validation_url: 'http://10.39.232.58:8080/validation'
+  ship_order: 'http://stage.orangeconnex.com:8481/gemini/is/v1/ship-order'
+  # 分拣编号:
+  sort_code: "05"
+  drop_site_id: "YW10"
+  # 打标接口
+  get_letter: "http://10.39.232.213:9601/api/waybill/letter/v1/letter"
+  # 换单接口
+  get_label: "http://10.39.232.213:9601/api/packages/v1/package"
+  # 建包接口
+  bu_bag: "http://10.39.232.213:9601/api/vendor/rfd/last_mile_bags/v1"
+  # 获取比邮大包号
+  get_last_mile_bag: "http://10.39.232.213:9601/api/vendor/sino/last_mile_bags/v1/section"
+  #负重接口
+  bag_weight: "http://10.39.232.213:9601/api/lastmile/v1/bag/weight"
+
+  # 出库接口 http://10.39.232.213:9601/api/outbound/v1/action
+  out_package: "http://10.39.232.213:9601/api/vendor/sino/last_mile_bags/v1/delivery"
+
+jx_stage:
+  validation_url: 'http://10.39.232.58:8080/validation'
+  ship_order: 'http://stage.orangeconnex.com:8481/gemini/is/v1/ship-order'
+  # 分拣编号:
+  sort_code: "08"
+  drop_site_id: "YW34"
+  # 打标接口
+  get_letter: "http://10.39.231.27:9603/api/vendor/sino/waybill/letter/v1/letter"
+  # 换单接口
+  get_label: "http://10.39.231.27:9603/api/vendor/sino/package/v1/packages"
+  # 获取比邮大包号
+  get_last_mile_bag: "http://10.39.231.27:9603/api/vendor/sino/last_mile_bags/v1/section"
+  # 建包接口
+  bu_bag: "http://10.39.231.27:9603/api/vendor/sino/last_mile_bags/v1"
+
+  #负重接口
+  bag_weight: ""
+  # 出库接口
+  out_package: "http://10.39.231.27:9603/api/vendor/sino/last_mile_bags/v1/delivery"
+

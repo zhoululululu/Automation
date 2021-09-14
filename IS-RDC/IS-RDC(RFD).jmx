@@ -1,0 +1,2079 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.3 r1808647">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="测试计划" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath">D:\apache-jmeter-3.3\lib\mysql-connector-java-5.1.28.jar</stringProp>
+    </TestPlan>
+    <hashTree>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/json</stringProp>
+          </elementProp>
+        </collectionProp>
+        <stringProp name="TestPlan.comments">设置“Content-Type”为“application/json”，用于后台接口json方式的传输。</stringProp>
+      </HeaderManager>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie 管理器" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="接口地址配置文件" enabled="false">
+        <stringProp name="filename">C:\IS-RDC\CsvFiles\config.csv</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="variableNames">ocip,oc_port,rfd_ip,ip,port,ascan_port,jf_ip,jf_port,jf_print_port</stringProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="数据配置文件" enabled="true">
+        <stringProp name="filename">C:\IS-RDC\CsvFiles\Data-GB-OWE.csv</stringProp>
+        <stringProp name="fileEncoding">GB2312</stringProp>
+        <stringProp name="variableNames">collectionType,consigneeAddr1,consigneeAddr2,consigneeCity,consigneeCountry,consigneeFullName,consigneePhone,consigneeState,consigneeZipCode,incoterm,isId,isMasterId,lengthUnit,orderCreatedDate,origin,currency,insurancedValue,currency,link,quantity,sku,skuDesc,skuDescCn,skuListingDesc,skuValue,skuWeight,transactionId,txnQty,txnUnitPrice,packageDesc,packageDescCn,packageHeight,packageLength,packageTotalWeight,packageWidth,preDeclaredStatus,serviceId,trackingNumber,pickUpAddrId,pickUpTime,projectCode,sellerAddrId,weightUnit,messageId,timestamp</stringProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">false</boolProp>
+        <boolProp name="stopThread">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+      </CSVDataSet>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="timeStamp" elementType="Argument">
+            <stringProp name="Argument.name">timeStamp</stringProp>
+            <stringProp name="Argument.value">${__time()}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="messageId" elementType="Argument">
+            <stringProp name="Argument.name">messageId</stringProp>
+            <stringProp name="Argument.value">${__RandomString(29,75e132cfef7efe7efff6c1e2e17f6)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="OC数据库(1.5环境)" enabled="true">
+        <boolProp name="autocommit">true</boolProp>
+        <stringProp name="checkQuery">Select 1</stringProp>
+        <stringProp name="connectionAge">5000</stringProp>
+        <stringProp name="dataSource">mysql</stringProp>
+        <stringProp name="dbUrl">jdbc:mysql://10.39.232.61:3307/aquarius</stringProp>
+        <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+        <boolProp name="keepAlive">true</boolProp>
+        <stringProp name="password">aquarius_user</stringProp>
+        <stringProp name="poolMax">10</stringProp>
+        <stringProp name="timeout">10000</stringProp>
+        <stringProp name="transactionIsolation">DEFAULT</stringProp>
+        <stringProp name="trimInterval">60000</stringProp>
+        <stringProp name="username">aquarius_user</stringProp>
+        <stringProp name="TestPlan.comments">连接mysql数据库</stringProp>
+      </JDBCDataSource>
+      <hashTree/>
+      <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="CRM数据(1.5环境)" enabled="true">
+        <boolProp name="autocommit">true</boolProp>
+        <stringProp name="checkQuery">Select 1</stringProp>
+        <stringProp name="connectionAge">5000</stringProp>
+        <stringProp name="dataSource">cancer</stringProp>
+        <stringProp name="dbUrl">jdbc:mysql://10.39.232.61:3307/cancer</stringProp>
+        <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+        <boolProp name="keepAlive">true</boolProp>
+        <stringProp name="password">aquarius_user</stringProp>
+        <stringProp name="poolMax">10</stringProp>
+        <stringProp name="timeout">10000</stringProp>
+        <stringProp name="transactionIsolation">DEFAULT</stringProp>
+        <stringProp name="trimInterval">60000</stringProp>
+        <stringProp name="username">aquarius_user</stringProp>
+        <stringProp name="TestPlan.comments">连接mysql数据库</stringProp>
+      </JDBCDataSource>
+      <hashTree/>
+      <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="RDC数据库(1.5环境)" enabled="true">
+        <boolProp name="autocommit">true</boolProp>
+        <stringProp name="checkQuery">Select 1</stringProp>
+        <stringProp name="connectionAge">5000</stringProp>
+        <stringProp name="dataSource">RDC</stringProp>
+        <stringProp name="dbUrl">jdbc:mysql://10.39.232.61:3307/scorpio_testsino</stringProp>
+        <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+        <boolProp name="keepAlive">true</boolProp>
+        <stringProp name="password">test123</stringProp>
+        <stringProp name="poolMax">10</stringProp>
+        <stringProp name="timeout">10000</stringProp>
+        <stringProp name="transactionIsolation">DEFAULT</stringProp>
+        <stringProp name="trimInterval">60000</stringProp>
+        <stringProp name="username">scorpio_sino</stringProp>
+        <stringProp name="TestPlan.comments">连接mysql数据库</stringProp>
+      </JDBCDataSource>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="IS-RDC" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1527582625000</longProp>
+        <longProp name="ThreadGroup.end_time">1527582625000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="true">
+          <stringProp name="ConstantTimer.delay">300</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="IS-OC" enabled="true"/>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="IS-OC下单 (交运)" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;data&quot;: {&#xd;
+		&quot;collectionType&quot;: ${collectionType},&#xd;
+		&quot;consigneeAddr1&quot;: &quot;${consigneeAddr1}&quot;,&#xd;
+		&quot;consigneeAddr2&quot;: &quot;${consigneeAddr2}&quot;,&#xd;
+		&quot;consigneeCity&quot;: &quot;${consigneeCity}&quot;,&#xd;
+		&quot;consigneeCountry&quot;: &quot;${consigneeCountry}&quot;,&#xd;
+		&quot;consigneeFullName&quot;: &quot;${consigneeFullName}&quot;,&#xd;
+		&quot;consigneePhone&quot;: &quot;${consigneePhone}&quot;,&#xd;
+		&quot;consigneeState&quot;: &quot;${consigneeState}&quot;,&#xd;
+		&quot;consigneeZipCode&quot;: &quot;${consigneeZipCode}&quot;,&#xd;
+		&quot;incoterm&quot;: ${incoterm},&#xd;
+		&quot;isId&quot;: &quot;${isId}&quot;,&#xd;
+		&quot;isMasterId&quot;: &quot;${isMasterId}&quot;,&#xd;
+		&quot;lengthUnit&quot;: ${lengthUnit},&#xd;
+		&quot;orderCreatedDate&quot;: &quot;${orderCreatedDate}&quot;,&#xd;
+		&quot;origin&quot;: &quot;${origin}&quot;,&#xd;
+		&quot;packageInfoList&quot;: [{&#xd;
+			&quot;currency&quot;: &quot;${currency}&quot;,&#xd;
+			&quot;insurancedValue&quot;: ${insurancedValue},&#xd;
+			&quot;itemInfoList&quot;: [{&#xd;
+				&quot;currency&quot;: &quot;${currency}&quot;,&#xd;
+				&quot;link&quot;: &quot;${link}&quot;,&#xd;
+				&quot;quantity&quot;: ${quantity},&#xd;
+				&quot;sku&quot;: &quot;${sku}&quot;,&#xd;
+				&quot;skuDesc&quot;: &quot;${skuDesc}&quot;,&#xd;
+				&quot;skuDescCn&quot;: &quot;${skuDescCn}&quot;,&#xd;
+				&quot;skuListingDesc&quot;: &quot;${skuListingDesc}&quot;,&#xd;
+				&quot;skuValue&quot;: ${skuValue},&#xd;
+				&quot;skuWeight&quot;: ${skuWeight},&#xd;
+				&quot;transactionId&quot;: &quot;${transactionId}&quot;,&#xd;
+				&quot;txnQty&quot;: ${txnQty},&#xd;
+				&quot;txnUnitPrice&quot;: ${txnUnitPrice}&#xd;
+			}],&#xd;
+			&quot;packageDesc&quot;: &quot;${packageDesc}&quot;,&#xd;
+			&quot;packageDescCn&quot;: &quot;${packageDescCn}&quot;,&#xd;
+			&quot;packageHeight&quot;: ${packageHeight},&#xd;
+			&quot;packageLength&quot;: ${packageLength},&#xd;
+			&quot;packageTotalWeight&quot;: ${packageTotalWeight},&#xd;
+			&quot;packageWidth&quot;: ${packageWidth},&#xd;
+			&quot;preDeclaredStatus&quot;: ${preDeclaredStatus},&#xd;
+			&quot;serviceId&quot;: &quot;${serviceId}&quot;,&#xd;
+			&quot;trackingNumber&quot;: &quot;${trackingNumber}&quot;&#xd;
+		}],&#xd;
+		&quot;pickUpAddrId&quot;: &quot;${pickUpAddrId}&quot;,&#xd;
+		&quot;pickUpTime&quot;: &quot;${pickUpTime}&quot;,&#xd;
+		&quot;projectCode&quot;: &quot;${projectCode}&quot;,&#xd;
+		&quot;sellerAddrId&quot;: &quot;${sellerAddrId}&quot;,&#xd;
+		&quot;weightUnit&quot;: ${weightUnit}&#xd;
+	},&#xd;
+	&quot;messageId&quot;: &quot;${messageId}&quot;,&#xd;
+	&quot;timestamp&quot;: ${timestamp}&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.39.232.54</stringProp>
+            <stringProp name="HTTPSampler.port">8484</stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+            <stringProp name="HTTPSampler.path">/is/v1/ship-order</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1646758641">&quot;code&quot;:0,&quot;message&quot;:&quot;成功&quot;</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待30秒" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">30000</stringProp>
+          </TestAction>
+          <hashTree/>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="验证IS订单是否到OC中" enabled="true">
+            <stringProp name="dataSource">mysql</stringProp>
+            <stringProp name="query">select tracking_number,message_id,order_created_time,seller_is_id,seller_master_id,receipt_number,service_product_code,
+length_unit,weight_unit,package_total_weight,package_length,package_width,package_volume,package_total_value,insuranced_value,
+currency,battery_type,incoterm,package_desc
+from t_waybill  where tracking_number = &apos;${trackingNumber}&apos;;</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="959655398">${trackingNumber}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="验证IS订单SKU是否到OC中" enabled="true">
+            <stringProp name="dataSource">mysql</stringProp>
+            <stringProp name="query">select tracking_number,sku,sku_desc,sku_desc_cn,quantity,sku_weight,sku_value,currency,transaction_id,link from t_order_package_item t where t.tracking_number =&apos;${trackingNumber}&apos;;
+
+</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="959655398">${trackingNumber}</stringProp>
+                <stringProp name="1147775063">${sku}</stringProp>
+                <stringProp name="-1906136741">${skuDescCn}</stringProp>
+                <stringProp name="690753222">${skuDesc}</stringProp>
+                <stringProp name="1990496149">${currency}</stringProp>
+                <stringProp name="556480411">${transactionId}</stringProp>
+                <stringProp name="152480347">${quantity}</stringProp>
+                <stringProp name="1214757196">${link}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="获取发货地址" enabled="true"/>
+        <hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取发货地址" enabled="true">
+            <stringProp name="dataSource">cancer</stringProp>
+            <stringProp name="query">select seller_id,address_id,address1,address2,address3,business_name,country,city,province,district,full_name,tel,zip_code
+from  t_crm_address where seller_id = &apos;${isMasterId}&apos; and address_type =&apos;0&apos; limit 1;</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-1885544001">${isMasterId}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <ResultSaver guiclass="ResultSaverGui" testclass="ResultSaver" testname="保存响应到文件" enabled="true">
+              <stringProp name="FileSaver.filename">D:\AutoCase\RDC\RFD\CsvFiles\crm-result.plain</stringProp>
+              <boolProp name="FileSaver.errorsonly">false</boolProp>
+              <boolProp name="FileSaver.skipautonumber">true</boolProp>
+              <boolProp name="FileSaver.skipsuffix">false</boolProp>
+              <boolProp name="FileSaver.successonly">true</boolProp>
+            </ResultSaver>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="OC-RDC" enabled="true"/>
+        <hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="OC下单到头程" enabled="true"/>
+          <hashTree>
+            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="crmaddress" enabled="true">
+              <stringProp name="filename">C:\IS-RDC\CsvFiles\crm-result.plain.plain</stringProp>
+              <stringProp name="fileEncoding">utf-8</stringProp>
+              <stringProp name="variableNames">seller_id,sellerAddId,sellerAddr1,sellerAddr2,sellerAddr3,sellerBusinessName,country,city,province,district,sellerFullName,sellerPhone,sellerZipCode</stringProp>
+              <boolProp name="ignoreFirstLine">true</boolProp>
+              <stringProp name="delimiter">\t</stringProp>
+              <boolProp name="quotedData">true</boolProp>
+              <boolProp name="recycle">true</boolProp>
+              <boolProp name="stopThread">false</boolProp>
+              <stringProp name="shareMode">shareMode.group</stringProp>
+            </CSVDataSet>
+            <hashTree/>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="地址库匹配卖家国家" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select name_cn from t_base_district where district_code = &apos;${country}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">sellerCountry</stringProp>
+                <stringProp name="RegexExtractor.regex">name_cn\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-640638755">${sellerCountry}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="地址库匹配卖家省份" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select name_cn from t_base_district where district_code = &apos;${province}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">sellerState</stringProp>
+                <stringProp name="RegexExtractor.regex">name_cn\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="1234610370">${sellerState}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="地址库匹配卖家城市" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select name_cn from t_base_district where district_code = &apos;${city}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">sellerCity</stringProp>
+                <stringProp name="RegexExtractor.regex">name_cn\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-2053469444">${sellerCity}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="地址库匹配卖家区域" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select name_cn from t_base_district where district_code = &apos;${district}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">sellerDistrict</stringProp>
+                <stringProp name="RegexExtractor.regex">name_cn\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="630251577">${sellerDistrict}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取isIdName" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select seller_name from t_waybill t where t.tracking_number = &apos;${trackingNumber}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">isIdName</stringProp>
+                <stringProp name="RegexExtractor.regex">seller_name\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-1905289354">${isIdName}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取orderDate" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select order_created_time from t_waybill t where t.tracking_number = &apos;${trackingNumber}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">orderDate</stringProp>
+                <stringProp name="RegexExtractor.regex">order_created_time\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-898755592">${orderDate}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取package_total_value" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select package_total_value from t_waybill t where t.tracking_number = &apos;${trackingNumber}&apos;;
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">package_total_value</stringProp>
+                <stringProp name="RegexExtractor.regex">package_total_value\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="1693603127">${package_total_value}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取package_volume" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select package_volume from t_waybill t where t.tracking_number = &apos;${trackingNumber}&apos;;
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">package_volume</stringProp>
+                <stringProp name="RegexExtractor.regex">package_volume\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-144571405">${package_volume}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取referenceNumber" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select reference_number from t_waybill t where t.tracking_number = &apos;${trackingNumber}&apos;;
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">referenceNumber</stringProp>
+                <stringProp name="RegexExtractor.regex">reference_number\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-974871712">${referenceNumber}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取serviceProductName" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select service_product_name from t_waybill t where t.tracking_number = &apos;${trackingNumber}&apos;;
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">serviceProductName</stringProp>
+                <stringProp name="RegexExtractor.regex">service_product_name\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="2029981889">${serviceProductName}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取referenceNumber" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select collection_type from t_waybill_pickup where tracking_number = &apos;${trackingNumber}&apos;;
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">collectionType</stringProp>
+                <stringProp name="RegexExtractor.regex">collection_type\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-141164850">${collectionType}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待60秒" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">60000</stringProp>
+            </TestAction>
+            <hashTree/>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取facility_code,next_facility_code" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select next_facility_code,facility_code from t_waybill_route_expected where tracking_number=&apos;${trackingNumber}&apos; and route_node =&apos;20&apos;;
+
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">facility</stringProp>
+                <stringProp name="RegexExtractor.regex">next_facility_code\tfacility_code\n(.+)\t</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">facility_code</stringProp>
+                <stringProp name="RegexExtractor.regex">facility_code\n[0-9][0-9]\t(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-312351933">${facility}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取facilityName" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select sortation_name from t_vendor_sortation where sortation_code =&apos;${facility}&apos; limit 1;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">facilityName</stringProp>
+                <stringProp name="RegexExtractor.regex">sortation_name\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-721422600">${facilityName}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取battery_type" enabled="true">
+              <stringProp name="dataSource">mysql</stringProp>
+              <stringProp name="query">select battery_type from t_waybill where tracking_number = &apos;${trackingNumber}&apos; limit 1;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">battery_type</stringProp>
+                <stringProp name="RegexExtractor.regex">battery_type\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-191185830">${battery_type}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="数据转换（小数转换为整数）" enabled="true">
+              <stringProp name="BeanShellSampler.query">int buff =(int)(${package_total_value});
+String str=String.valueOf(buff);
+vars.put(&quot;packageTotalValue&quot;,str);
+
+int str_buff =(int)(${package_volume});
+String str_volume=String.valueOf(str_buff);
+vars.put(&quot;packageVolume&quot;,str_volume);
+
+</stringProp>
+              <stringProp name="BeanShellSampler.filename"></stringProp>
+              <stringProp name="BeanShellSampler.parameters"></stringProp>
+              <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+            </BeanShellSampler>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="下单交运（RFD）" enabled="false">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+    &quot;data&quot;:{&#xd;
+        &quot;businessCode&quot;:&quot;${businessCode}&quot;,&#xd;
+        &quot;lengthUnit&quot;:${lengthUnit},&#xd;
+        &quot;packageInfoList&quot;:[&#xd;
+            {&#xd;
+                &quot;battery&quot;:&quot;${battery_type}&quot;,&#xd;
+                &quot;cC&quot;:&quot;${facility_code}&quot;,&#xd;
+                &quot;ccName&quot;:&quot;${ccName}&quot;,&#xd;
+                &quot;collectionType&quot;:${collectionType},&#xd;
+                &quot;currency&quot;:&quot;${currency}&quot;,&#xd;
+                &quot;facility&quot;:&quot;${facility}&quot;,&#xd;
+                &quot;facilityName&quot;:&quot;${facilityName}&quot;,&#xd;
+                &quot;firstMileServiceCode&quot;:&quot;&quot;,&#xd;
+                &quot;incoterm&quot;:&quot;${incoterm}&quot;,&#xd;
+                &quot;isId&quot;:&quot;${isId}&quot;,&#xd;
+                &quot;isIdName&quot;:&quot;${isIdName}&quot;,&#xd;
+                &quot;isSubId&quot;:&quot;${isId}&quot;,&#xd;
+                &quot;orderDate&quot;:&quot;${orderDate}&quot;,&#xd;
+                &quot;packageHeight&quot;:${packageHeight},&#xd;
+                &quot;packageLength&quot;:${packageLength},&#xd;
+                &quot;packageTotalValue&quot;:${packageTotalValue},&#xd;
+                &quot;packageTotalWeight&quot;:${packageTotalWeight},&#xd;
+                &quot;packageVolume&quot;:${packageVolume},&#xd;
+                &quot;packageWidth&quot;:${packageWidth},&#xd;
+                &quot;pickUpTime&quot;:&quot;${pickUpTime}&quot;,&#xd;
+                &quot;referenceNumber&quot;:&quot;${referenceNumber}&quot;,&#xd;
+                &quot;sellerAddId&quot;:&quot;${sellerAddId}&quot;,&#xd;
+                &quot;sellerAddr1&quot;:&quot;${sellerAddr1}&quot;,&#xd;
+                &quot;sellerAddr2&quot;:&quot;${sellerAddr2}&quot;,&#xd;
+                &quot;sellerAddr3&quot;:&quot;${sellerAddr3}&quot;,&#xd;
+                &quot;sellerBusinessName&quot;:&quot;${sellerBusinessName}&quot;,&#xd;
+                &quot;sellerCity&quot;:&quot;${sellerCity}&quot;,&#xd;
+                &quot;sellerCountry&quot;:&quot;${sellerCountry}&quot;,&#xd;
+                &quot;sellerDistrict&quot;:&quot;${sellerDistrict}&quot;,&#xd;
+                &quot;sellerFullName&quot;:&quot;${sellerFullName}&quot;,&#xd;
+                &quot;sellerPhone&quot;:&quot;${sellerPhone}&quot;,&#xd;
+                &quot;sellerState&quot;:&quot;${sellerState}&quot;,&#xd;
+                &quot;sellerZipCode&quot;:&quot;${sellerZipCode}&quot;,&#xd;
+                &quot;serviceProductName&quot;:&quot;${serviceProductName}&quot;,&#xd;
+                &quot;trackingNumber&quot;:&quot;${trackingNumber}&quot;&#xd;
+            }&#xd;
+        ],&#xd;
+        &quot;project&quot;:&quot;${project}&quot;,&#xd;
+        &quot;weightUnit&quot;:${weightUnit}&#xd;
+    },&#xd;
+    &quot;messageId&quot;:&quot;${messageId}&quot;,&#xd;
+    &quot;timestamp&quot;:${timeStamp}&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${rfd_ip}</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">/api/jv/Import</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="-673250867">businessCode</stringProp>
+                  <stringProp name="-1366832373">ccName</stringProp>
+                  <stringProp name="-309310695">project</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="-378968991">
+                    <stringProp name="2247">FM</stringProp>
+                    <stringProp name="-1360230279">深圳集货中心</stringProp>
+                    <stringProp name="1266080299">eBay-Pre</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="723322509">&quot;code&quot;:&quot;0&quot;</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Ascan" enabled="true"/>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Ascan 1.5测试" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;events&quot;: [&#xd;
+      {&#xd;
+        &quot;bagId&quot;: &quot;${bagId}&quot;,&#xd;
+        &quot;bagType&quot;: ${bagType},&#xd;
+        &quot;collectionListId&quot;: &quot;${collectionListId}&quot;,&#xd;
+        &quot;eventCity&quot;: &quot;${eventCity}&quot;,&#xd;
+        &quot;eventCityCn&quot;: &quot;${eventCityCn}&quot;,&#xd;
+        &quot;eventCode&quot;: &quot;${eventCode}&quot;,&#xd;
+        &quot;eventCountry&quot;: &quot;${eventCountry}&quot;,&#xd;
+        &quot;eventCountryCn&quot;: &quot;${eventCountryCn}&quot;,&#xd;
+        &quot;eventDesc&quot;: &quot;${eventDesc}&quot;,&#xd;
+        &quot;eventDistrict&quot;: &quot;${eventDistrict}&quot;,&#xd;
+        &quot;eventDistrictCn&quot;: &quot;${eventDistrictCn}&quot;,&#xd;
+        &quot;eventPostCode&quot;: &quot;${eventPostCode}&quot;,&#xd;
+        &quot;eventState&quot;: &quot;${eventState}&quot;,&#xd;
+        &quot;eventStateCn&quot;: &quot;${eventStateCn}&quot;,&#xd;
+        &quot;eventTime&quot;: &quot;${eventTime}&quot;,&#xd;
+        &quot;serialNumber&quot;: &quot;${serialNumber}&quot;,&#xd;
+        &quot;specialOperDesc&quot;: &quot;${specialOperDesc}&quot;,&#xd;
+        &quot;status&quot;: ${status},&#xd;
+        &quot;trackingNumber&quot;: &quot;${trackingNumber}&quot;,&#xd;
+        &quot;isMasterId&quot;:&quot;${isMasterId}&quot;,&#xd;
+        &quot;isId&quot;:&quot;${isId}&quot;,&#xd;
+        &quot;bagWeight&quot;:${bagWeight},&#xd;
+        &quot;weightUnit&quot;:${weightUnit}                          &#xd;
+      }&#xd;
+    ]&#xd;
+  },&#xd;
+  &quot;messageId&quot;: &quot;${messageId}&quot;,&#xd;
+  &quot;timestamp&quot;: ${timestamp}&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">testapi.orangeconnex.com</stringProp>
+              <stringProp name="HTTPSampler.port">8480</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/api/vendor/trace/first-leg/v1/tracking-events/yw</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="723322509">&quot;code&quot;:&quot;0&quot;</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+              <collectionProp name="UserParameters.names">
+                <stringProp name="93496131">bagId</stringProp>
+                <stringProp name="-344179870">bagType</stringProp>
+                <stringProp name="-2038319465">collectionListId</stringProp>
+                <stringProp name="30909221">eventCity</stringProp>
+                <stringProp name="-361007504">eventCityCn</stringProp>
+                <stringProp name="30914471">eventCode</stringProp>
+                <stringProp name="1866087324">eventCountry</stringProp>
+                <stringProp name="-1986409177">eventCountryCn</stringProp>
+                <stringProp name="30935115">eventDesc</stringProp>
+                <stringProp name="-1619865528">eventDistrict</stringProp>
+                <stringProp name="-1912609069">eventDistrictCn</stringProp>
+                <stringProp name="-1152317593">eventPostCode</stringProp>
+                <stringProp name="973271575">eventState</stringProp>
+                <stringProp name="-988884766">eventStateCn</stringProp>
+                <stringProp name="125461113">eventTime_1</stringProp>
+                <stringProp name="83787357">serialNumber</stringProp>
+                <stringProp name="1450483160">specialOperDesc</stringProp>
+                <stringProp name="-892481550">status</stringProp>
+                <stringProp name="-1457286116">weightUnit</stringProp>
+                <stringProp name="22840480">bagWeight</stringProp>
+                <stringProp name="31415431">eventTime</stringProp>
+              </collectionProp>
+              <collectionProp name="UserParameters.thread_values">
+                <collectionProp name="-1817365997">
+                  <stringProp name="-2099443375">YW1991${__Random(0212,0312)}</stringProp>
+                  <stringProp name="49">1</stringProp>
+                  <stringProp name="1681735542">wpw${__Random(214572,345412)}</stringProp>
+                  <stringProp name="-1807911114">SuZhou</stringProp>
+                  <stringProp name="-1148839585">南京夫子庙</stringProp>
+                  <stringProp name="-1027102214">PMRPU-COURIER</stringProp>
+                  <stringProp name="2155">CN</stringProp>
+                  <stringProp name="642672">中国</stringProp>
+                  <stringProp name="-218969131">小包收货确认(A-SCAN)</stringProp>
+                  <stringProp name="2231280">Gusu</stringProp>
+                  <stringProp name="-1904735245">爱尚区仙林大学城南京理工大学</stringProp>
+                  <stringProp name="-1012432687">${__Random(221200,321200)}</stringProp>
+                  <stringProp name="54816733">JiangSu</stringProp>
+                  <stringProp name="893520">江苏</stringProp>
+                  <stringProp name="-1424033239">${__time(YYYY-MM-dd)}T${__time(HH:mm:ss)}+0800 </stringProp>
+                  <stringProp name="-740283102">wpw${__Random(1111111111111,9999999999999)}</stringProp>
+                  <stringProp name="316749169">王鹏伟自行车上门揽件，非常辛苦</stringProp>
+                  <stringProp name="48">0</stringProp>
+                  <stringProp name="48">0</stringProp>
+                  <stringProp name="1516009312">${__Random(1,500)}</stringProp>
+                  <stringProp name="-1067725892">2018-09-01T00:00:00+0800</stringProp>
+                </collectionProp>
+              </collectionProp>
+              <boolProp name="UserParameters.per_iteration">false</boolProp>
+            </UserParameters>
+            <hashTree/>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="发货预报" enabled="true"/>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="发货预报" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;bagId&quot;: &quot;${bagId}&quot;,&#xd;
+    &quot;bagVolume&quot;: ${bagVolume},&#xd;
+    &quot;bagWeight&quot;: ${bagWeight},&#xd;
+    &quot;battery&quot;: ${battery},  &#xd;
+    &quot;deliveryTime&quot;: &quot;${deliveryTime}&quot;,&#xd;
+    &quot;departure&quot;: &quot;${departure}&quot;,&#xd;
+    &quot;destination&quot;: &quot;${destination}&quot;,&#xd;
+    &quot;driverContactName&quot;: &quot;${driverContactName}&quot;,&#xd;
+    &quot;driverContactPhone&quot;: &quot;${driverContactPhone}&quot;,&#xd;
+    &quot;expectedArrivalTime&quot;: &quot;${expectedArrivalTime}&quot;,&#xd;
+    &quot;packageInfoList&quot;: [&#xd;
+    {&quot;trackingNumber&quot;:&quot;${trackingNumber}&quot;}  &#xd;
+    ],&#xd;
+    &quot;receiptNumber&quot;: &quot;${receiptNumber}&quot;,&#xd;
+    &quot;status&quot;: ${status},&#xd;
+    &quot;transportation&quot;: ${transportation},&#xd;
+    &quot;transportationInfo&quot;: &quot;${transportationInfo}&quot;,&#xd;
+    &quot;volumeUnit&quot;: ${volumeUnit},&#xd;
+    &quot;weightUnit&quot;: ${weightUnit}&#xd;
+  },&#xd;
+  &quot;messageId&quot;: &quot;${messageId}&quot;,&#xd;
+  &quot;timestamp&quot;: ${timestamp}&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">testapi.orangeconnex.com</stringProp>
+              <stringProp name="HTTPSampler.port">8480</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/api/vendor/trace/first-leg/v1/delivery-notice/rf</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="3549506">bagVolume</stringProp>
+                  <stringProp name="22840480">bagWeight</stringProp>
+                  <stringProp name="-331239923">battery</stringProp>
+                  <stringProp name="681953505">deliveryTime</stringProp>
+                  <stringProp name="-1219557132">departure</stringProp>
+                  <stringProp name="-1429847026">destination</stringProp>
+                  <stringProp name="-651368061">driverContactName</stringProp>
+                  <stringProp name="1284484470">driverContactPhone</stringProp>
+                  <stringProp name="188843150">expectedArrivalTime</stringProp>
+                  <stringProp name="-75518047">receiptNumber</stringProp>
+                  <stringProp name="-892481550">status</stringProp>
+                  <stringProp name="1929598316">transportation</stringProp>
+                  <stringProp name="-312108998">transportationInfo</stringProp>
+                  <stringProp name="-1552541762">volumeUnit</stringProp>
+                  <stringProp name="-1457286116">weightUnit</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="352727636">
+                    <stringProp name="-979971936">${__Random(100,500)}</stringProp>
+                    <stringProp name="-979971936">${__Random(100,500)}</stringProp>
+                    <stringProp name="49">1</stringProp>
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                    <stringProp name="2512290">RFD2</stringProp>
+                    <stringProp name="1538">02</stringProp>
+                    <stringProp name="-759499620">xiaoli</stringProp>
+                    <stringProp name="1203610517">13888888821</stringProp>
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                    <stringProp name="-861558246">ZY02201803${__Random(1300000354,2300000354)}</stringProp>
+                    <stringProp name="49">1</stringProp>
+                    <stringProp name="49">1</stringProp>
+                    <stringProp name="-323881180">上海B${__Random(2000,5000)}</stringProp>
+                    <stringProp name="48">0</stringProp>
+                    <stringProp name="48">0</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="723322509">&quot;code&quot;:&quot;0&quot;</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待3分钟" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">180000</stringProp>
+            </TestAction>
+            <hashTree/>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="判断订单是否已到分拣中心" enabled="true">
+              <stringProp name="dataSource">RDC</stringProp>
+              <stringProp name="query">select tracking_number from t_waybill t where t.tracking_number = &apos;${trackingNumber}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">tracking_number</stringProp>
+                <stringProp name="RegexExtractor.regex">tracking_number\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">0</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="1864049571">${tracking_number}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="RDC流程（金锋）" enabled="true"/>
+        <hashTree>
+          <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Ascan参数" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="MessageId" elementType="Argument">
+                <stringProp name="Argument.name">MessageId</stringProp>
+                <stringProp name="Argument.value">${__RandomString(9,962351195)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="TimeStamp" elementType="Argument">
+                <stringProp name="Argument.name">TimeStamp</stringProp>
+                <stringProp name="Argument.value">${__time()}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="SerialNumber" elementType="Argument">
+                <stringProp name="Argument.name">SerialNumber</stringProp>
+                <stringProp name="Argument.value">kq${__Random(111111111111111,999999999999999)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="BagId" elementType="Argument">
+                <stringProp name="Argument.name">BagId</stringProp>
+                <stringProp name="Argument.value">FQ${__Random(11111111,99999999)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="CollectionListID" elementType="Argument">
+                <stringProp name="Argument.name">CollectionListID</stringProp>
+                <stringProp name="Argument.value">SL${__Random(1111111111111,9999999999999)}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventCode" elementType="Argument">
+                <stringProp name="Argument.name">EventCode</stringProp>
+                <stringProp name="Argument.value">PMRPU-COURIER</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventDesc" elementType="Argument">
+                <stringProp name="Argument.name">EventDesc</stringProp>
+                <stringProp name="Argument.value">小包收货确认(A-SCAN)</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventTime_1" elementType="Argument">
+                <stringProp name="Argument.name">EventTime_1</stringProp>
+                <stringProp name="Argument.value">${__time(YYYY-MM-dd)}T${__time(HH:mm:ss)}+0800  </stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventCountry" elementType="Argument">
+                <stringProp name="Argument.name">EventCountry</stringProp>
+                <stringProp name="Argument.value">CN</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventState" elementType="Argument">
+                <stringProp name="Argument.name">EventState</stringProp>
+                <stringProp name="Argument.value">Guangdong</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventCity" elementType="Argument">
+                <stringProp name="Argument.name">EventCity</stringProp>
+                <stringProp name="Argument.value">Shenzhen</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventDistrict" elementType="Argument">
+                <stringProp name="Argument.name">EventDistrict</stringProp>
+                <stringProp name="Argument.value">Pingshan</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventPostCode" elementType="Argument">
+                <stringProp name="Argument.name">EventPostCode</stringProp>
+                <stringProp name="Argument.value">&quot;&quot;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="Status" elementType="Argument">
+                <stringProp name="Argument.name">Status</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="FacilityType" elementType="Argument">
+                <stringProp name="Argument.name">FacilityType</stringProp>
+                <stringProp name="Argument.value">0</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="BagType" elementType="Argument">
+                <stringProp name="Argument.name">BagType</stringProp>
+                <stringProp name="Argument.value">1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="EventTime" elementType="Argument">
+                <stringProp name="Argument.name">EventTime</stringProp>
+                <stringProp name="Argument.value">2018-09-01T00:00:00+0800</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="BagId_1" elementType="Argument">
+                <stringProp name="Argument.name">BagId_1</stringProp>
+                <stringProp name="Argument.value">FQ82673840</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </Arguments>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="分拣中心登录" enabled="false">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;userCode&quot;:&quot;${userCode}&quot;,&quot;password&quot;:&quot;${password}&quot;}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.7.12.34</stringProp>
+            <stringProp name="HTTPSampler.port">8088</stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+            <stringProp name="HTTPSampler.path">/scorpio/users/v1/session</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="false">
+              <collectionProp name="UserParameters.names">
+                <stringProp name="-266981288">userCode</stringProp>
+                <stringProp name="1216985755">password</stringProp>
+              </collectionProp>
+              <collectionProp name="UserParameters.thread_values">
+                <collectionProp name="1811139295">
+                  <stringProp name="99049120">harry</stringProp>
+                  <stringProp name="-189693616">e10adc3949ba59abbe56e057f20f883e</stringProp>
+                </collectionProp>
+              </collectionProp>
+              <boolProp name="UserParameters.per_iteration">false</boolProp>
+            </UserParameters>
+            <hashTree/>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="false">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="927843401">登录成功</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="大包入库" enabled="true"/>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="大包入库" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;facilityCode&quot;: &quot;${facilityCode}&quot;,&#xd;
+    &quot;receiptNumber&quot;: &quot;${receiptNumber}&quot;,&#xd;
+    &quot;vehicleId&quot;: &quot;${vehicleId}&quot;,&#xd;
+    &quot;bagId&quot;: &quot;${bagId}&quot;,&#xd;
+    &quot;status&quot;: ${status},&#xd;
+    &quot;bagWeight&quot;: ${bagWeight},&#xd;
+    &quot;weightUnit&quot;: ${weightUnit},&#xd;
+    &quot;operateUser&quot;: &quot;${operateUser}&quot;,&#xd;
+    &quot;warehouseInTime&quot;: &quot;${warehouseInTime}&quot;,&#xd;
+    &quot;arrivalTime&quot;: &quot;${arrivalTime}&quot;&#xd;
+  },&#xd;
+  &quot;messageId&quot;: &quot;${messageId}&quot;,&#xd;
+  &quot;timestamp&quot;: ${timestamp}&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">10.39.232.133</stringProp>
+              <stringProp name="HTTPSampler.port">7073</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">/scorpio/api/vendor/sino/bags/v1/unload</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="370181936">facilityCode</stringProp>
+                  <stringProp name="-75518047">receiptNumber</stringProp>
+                  <stringProp name="-1984135833">vehicleId</stringProp>
+                  <stringProp name="-892481550">status</stringProp>
+                  <stringProp name="22840480">bagWeight</stringProp>
+                  <stringProp name="-1457286116">weightUnit</stringProp>
+                  <stringProp name="125241199">operateUser</stringProp>
+                  <stringProp name="-487586202">arrivalTime</stringProp>
+                  <stringProp name="-784170443">warehouseInTime</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="1426653414">
+                    <stringProp name="1538">02</stringProp>
+                    <stringProp name="-1371288010">YW0${__Random(111111111,999999999)}</stringProp>
+                    <stringProp name="407364840">BJ${__Random(100,500)}</stringProp>
+                    <stringProp name="48">0</stringProp>
+                    <stringProp name="-979971936">${__Random(100,500)}</stringProp>
+                    <stringProp name="48">0</stringProp>
+                    <stringProp name="2222971">HOAU</stringProp>
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待5秒" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">5000</stringProp>
+            </TestAction>
+            <hashTree/>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="验证入库信息" enabled="true">
+              <stringProp name="dataSource">RDC</stringProp>
+              <stringProp name="query">select bag_no from  t_in_unload_bag where bag_no =&apos;${bagId}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-1291154127">${bagId}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="打印面单" enabled="true"/>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="打印面单 ${trackingNumber} " enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+ &quot;data&quot;:&#xd;
+ {&#xd;
+  &quot;facilityCode&quot;:&quot;${facilityCode}&quot;,&#xd;
+  &quot;trackingNumber&quot;:&quot;${trackingNumber}&quot;,&#xd;
+  &quot;referenceNumber&quot;:${referenceNumber},&#xd;
+  &quot;packageWeight&quot;:${packageWeight},&#xd;
+  &quot;operateUser&quot;:&quot;${operateUser}&quot;,&#xd;
+  &quot;scanPackageTime&quot;:&quot;${scanPackageTime}&quot;,&#xd;
+      &quot;package_height&quot;:${package_height},&#xd;
+      &quot;package_width&quot;:${package_width},&#xd;
+      &quot;package_length&quot;:${package_length}&#xd;
+  },&#xd;
+  &quot;messageId&quot;:&quot;${messageId}&quot;,&#xd;
+  &quot;timestamp&quot;:${timestamp}&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">10.39.232.133</stringProp>
+              <stringProp name="HTTPSampler.port">7073</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">/scorpio/api/vendor/sino/package/v1/packages</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="firstSortingResult" enabled="false">
+                <stringProp name="JSONPostProcessor.referenceNames">firstSortingResult</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.firstSortingResult</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="lastmileTrackingNumber" enabled="false">
+                <stringProp name="JSONPostProcessor.referenceNames">lastmileTrackingNumber</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.lastmileTrackingNumber</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="sortingResult" enabled="false">
+                <stringProp name="JSONPostProcessor.referenceNames">sortingResult</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.result.sortingResult</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="-35174026">scanPackageTime</stringProp>
+                  <stringProp name="744563316">referenceNumber</stringProp>
+                  <stringProp name="1700304478">packageWeight</stringProp>
+                  <stringProp name="557502376">scanPackageTime_1</stringProp>
+                  <stringProp name="370181936">facilityCode</stringProp>
+                  <stringProp name="125241199">operateUser</stringProp>
+                  <stringProp name="-237822144">package_height</stringProp>
+                  <stringProp name="1945958541">package_width</stringProp>
+                  <stringProp name="-123156225">package_length</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="-808664931">
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                    <stringProp name="3392903">null</stringProp>
+                    <stringProp name="-96491214">${__Random(10,1000)}</stringProp>
+                    <stringProp name="602532317">2018-09-07 00:00:00</stringProp>
+                    <stringProp name="1538">02</stringProp>
+                    <stringProp name="2222971">HOAU</stringProp>
+                    <stringProp name="1622333391">${__Random(10,40)}</stringProp>
+                    <stringProp name="1622333391">${__Random(10,40)}</stringProp>
+                    <stringProp name="133082475">${__Random(45,60)}</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+            </hashTree>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${firstSortingResult} + ${lastmileTrackingNumber} +${sortingResult}+${serviceId}" enabled="true">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待3s" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">3000</stringProp>
+            </TestAction>
+            <hashTree/>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="判断面单信息是否到数据库中" enabled="true">
+              <stringProp name="dataSource">RDC</stringProp>
+              <stringProp name="query">select lastmile_tracking_number,first_sorting_result,sorting_result from t_scan_package t where t.tracking_number = &apos;${trackingNumber}&apos;;
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="false">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="2077078133">${firstSortingResult}</stringProp>
+                  <stringProp name="194176443">${lastmileTrackingNumber}</stringProp>
+                  <stringProp name="48317043">${sortingResult}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="firstSortingResult提取" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">firstSortingResult</stringProp>
+              <stringProp name="RegexExtractor.regex">&quot;firstSortingResult&quot;:&quot;(.*?)&quot;,&quot;isUspsPackage&quot;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="sortingResult提取" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">sortingResult</stringProp>
+              <stringProp name="RegexExtractor.regex">&quot;sortingResult&quot;:&quot;(.*?)&quot;,&quot;status&quot;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="lastmileTrackingNumber提取" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">lastmileTrackingNumber</stringProp>
+              <stringProp name="RegexExtractor.regex">&quot;lastmileTrackingNumber&quot;:&quot;(.*?)&quot;,&quot;lastmileType&quot;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="尾程小包扫描-结包" enabled="true"/>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="结包" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+ &quot;data&quot;: {&#xd;
+  &quot;facilityCode&quot;: &quot;${facilityCode}&quot;,&#xd;
+  &quot;temporaryBagNo&quot;: &quot;${temporaryBagNo}&quot;,&#xd;
+  &quot;bagRealWeight&quot;: ${bagRealWeight},&#xd;
+  &quot;weightUnit&quot;: ${weightUnit},&#xd;
+  &quot;bagRealVolume&quot;: ${bagRealVolume},&#xd;
+  &quot;volumeUnit&quot;: ${volumeUnit},&#xd;
+  &quot;battery&quot;: ${battery},&#xd;
+  &quot;firstSortingResult&quot;: &quot;${firstSortingResult}&quot;,&#xd;
+  &quot;sortingResult&quot;: &quot;${sortingResult}&quot;,&#xd;
+  &quot;endBagTime&quot;: &quot;${endBagTime}&quot;,&#xd;
+  &quot;packageInfoList&quot;: [{&#xd;
+   &quot;lastmileTrackingNumber&quot;: &quot;${lastmileTrackingNumber}&quot;&#xd;
+  }],&#xd;
+  &quot;bagLength&quot;: &quot;${bagLength}&quot;,&#xd;
+  &quot;bagWidth&quot;: &quot;${bagWidth}&quot;,&#xd;
+  &quot;bagHeight&quot;: &quot;${bagHeight}&quot;,&#xd;
+  &quot;mawb&quot;:${mawb}&#xd;
+ },&#xd;
+ &quot;messageId&quot;: &quot;${messageId}&quot;,&#xd;
+ &quot;timestamp&quot;: ${timestamp}&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">10.39.232.133</stringProp>
+              <stringProp name="HTTPSampler.port">7073</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">/scorpio/api/vendor/sino/last_mile_bags/v1</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="bagId提取" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">bagId</stringProp>
+                <stringProp name="RegexExtractor.regex">&quot;bagId&quot;:&quot;(.*?)&quot;,&quot;bagLabel&quot;</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="370181936">facilityCode</stringProp>
+                  <stringProp name="-1940488168">temporaryBagNo</stringProp>
+                  <stringProp name="648759262">bagRealWeight</stringProp>
+                  <stringProp name="-1457286116">weightUnit</stringProp>
+                  <stringProp name="629468288">bagRealVolume</stringProp>
+                  <stringProp name="-1552541762">volumeUnit</stringProp>
+                  <stringProp name="-331239923">battery</stringProp>
+                  <stringProp name="-470450484">endBagTime_1</stringProp>
+                  <stringProp name="-291930866">bagLength</stringProp>
+                  <stringProp name="-2077358434">bagWidth</stringProp>
+                  <stringProp name="-406596785">bagHeight</stringProp>
+                  <stringProp name="3344223">mawb</stringProp>
+                  <stringProp name="-116690534">endBagTime</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="-1555023859">
+                    <stringProp name="1538">02</stringProp>
+                    <stringProp name="1130850515">SN2019083018808</stringProp>
+                    <stringProp name="-96491214">${__Random(10,1000)}</stringProp>
+                    <stringProp name="48">0</stringProp>
+                    <stringProp name="-96491214">${__Random(10,1000)}</stringProp>
+                    <stringProp name="48">0</stringProp>
+                    <stringProp name="48">0</stringProp>
+                    <stringProp name="602532317">2018-09-07 00:00:00</stringProp>
+                    <stringProp name="1622392973">${__Random(10,60)}</stringProp>
+                    <stringProp name="1622392973">${__Random(10,60)}</stringProp>
+                    <stringProp name="1622392973">${__Random(10,60)}</stringProp>
+                    <stringProp name="3392903">null</stringProp>
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待1s" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">1000</stringProp>
+            </TestAction>
+            <hashTree/>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="复合承重" enabled="false"/>
+          <hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取大包号" enabled="true">
+              <stringProp name="dataSource">RDC</stringProp>
+              <stringProp name="query">select lastmile_bag_no from t_scan_package t where t.tracking_number = &apos;${trackingNumber}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="正则表达式提取器" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">bagNo</stringProp>
+                <stringProp name="RegexExtractor.regex">lastmile_bag_no\n(.+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number"></stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-1291148981">${bagNo}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="复合承重" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+	    &quot;bagRealWeight&quot;:${bagRealWeight},&#xd;
+	    &quot;bagNo&quot;:&quot;${bagNo}&quot;,&#xd;
+	    &quot;operationTime&quot;:&quot;${operationTime}&quot;&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${jf_ip}</stringProp>
+              <stringProp name="HTTPSampler.port">${jf_port}</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">/scorpio/api/lastmile/v1/bag/weight</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="648759262">bagRealWeight</stringProp>
+                  <stringProp name="91984084">operationTime</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="-759782907">
+                    <stringProp name="-96102757">${__Random(101,120)}</stringProp>
+                    <stringProp name="-904483024">${__time(YYYY-MM-dd hh:mm:ss)}</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+                  <stringProp name="990066819">&quot;message&quot;:&quot;Successful&quot;</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">6</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待1s" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">1000</stringProp>
+            </TestAction>
+            <hashTree/>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="大包出库" enabled="true"/>
+          <hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="获取大包号" enabled="true">
+              <stringProp name="dataSource">RDC</stringProp>
+              <stringProp name="query">select lastmile_bag_no from t_scan_package t where t.tracking_number = &apos;${trackingNumber}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-1291154127">${bagId}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="新建出库交接单" enabled="false">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">10.7.12.34</stringProp>
+              <stringProp name="HTTPSampler.port">8088</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">/scorpio/api/outbound/v1/package/${bagNo}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="destination" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">destination</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.resultList[0].destination</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="destinationCode" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">destinationCode</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.resultList[0].destinationCode</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="id" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">id</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.resultList[0].id</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="stagingArea" enabled="true">
+                <stringProp name="JSONPostProcessor.referenceNames">stagingArea</stringProp>
+                <stringProp name="JSONPostProcessor.jsonPathExprs">$.resultList[0].stagingArea</stringProp>
+                <stringProp name="JSONPostProcessor.match_numbers"></stringProp>
+              </JSONPostProcessor>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-1177937100">&quot;bagNo&quot;:&quot;${bagNo}&quot;</stringProp>
+                  <stringProp name="-547797305">&quot;success&quot;:true</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="${destination}+${destinationCode}+${id}+${stagingArea}" enabled="false">
+              <boolProp name="displayJMeterProperties">false</boolProp>
+              <boolProp name="displayJMeterVariables">true</boolProp>
+              <boolProp name="displaySystemProperties">false</boolProp>
+            </DebugSampler>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="出库交接单提交" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;data&quot;: {&#xd;
+    &quot;bagInfoList&quot;: [&#xd;
+      {&#xd;
+        &quot;bagId&quot;: &quot;${bagId}&quot;,&#xd;
+        &quot;scanBagTime&quot;: &quot;${scanBagTime}&quot;&#xd;
+      }],&#xd;
+    &quot;deliveryNo&quot;: &quot;${deliveryNo}&quot;,&#xd;
+    &quot;deliveryTime&quot;: &quot;${deliveryTime}&quot;,&#xd;
+    &quot;expectedArrivalTime&quot;: &quot;${expectedArrivalTime}&quot;,&#xd;
+    &quot;driverContactName&quot;: &quot;${driverContactName}&quot;,&#xd;
+    &quot;driverContactPhone&quot;: &quot;${driverContactPhone}&quot;,&#xd;
+    &quot;transportation&quot;: ${transportation},&#xd;
+     &quot;vehicleload&quot;:${vehicleload},&#xd;
+    &quot;transportationInfo&quot;: &quot;${transportationInfo}&quot;,&#xd;
+    &quot;departure&quot;: &quot;${departure}&quot;,&#xd;
+    &quot;destination&quot;: &quot;${destination}&quot;&#xd;
+  },&#xd;
+  &quot;messageId&quot;: &quot;${messageId}&quot;,&#xd;
+  &quot;timestamp&quot;: ${timestamp}&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">10.39.232.133</stringProp>
+              <stringProp name="HTTPSampler.port">7073</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">/scorpio/api/vendor/sino/last_mile_bags/v1/delivery</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="用户参数" enabled="true">
+                <collectionProp name="UserParameters.names">
+                  <stringProp name="2055666104">scanBagTime</stringProp>
+                  <stringProp name="1077803221">deliveryNo</stringProp>
+                  <stringProp name="681953505">deliveryTime</stringProp>
+                  <stringProp name="188843150">expectedArrivalTime</stringProp>
+                  <stringProp name="-651368061">driverContactName</stringProp>
+                  <stringProp name="1284484470">driverContactPhone</stringProp>
+                  <stringProp name="1929598316">transportation</stringProp>
+                  <stringProp name="212000274">vehicleload</stringProp>
+                  <stringProp name="-312108998">transportationInfo</stringProp>
+                  <stringProp name="-1219557132">departure</stringProp>
+                  <stringProp name="-1429847026">destination</stringProp>
+                </collectionProp>
+                <collectionProp name="UserParameters.thread_values">
+                  <collectionProp name="-1203573293">
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                    <stringProp name="-1854288780">CJ20190${__Random(83015417,99999999)}</stringProp>
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                    <stringProp name="-453497040">${__time(YYYY-MM-dd HH:MM:ss)}</stringProp>
+                    <stringProp name="2222971">HOAU</stringProp>
+                    <stringProp name="1106973765">18795869235</stringProp>
+                    <stringProp name="49">1</stringProp>
+                    <stringProp name="53">5</stringProp>
+                    <stringProp name="-637239847">粤A36636</stringProp>
+                    <stringProp name="84832856">YW006</stringProp>
+                    <stringProp name="-1941350009">DHL-SHA</stringProp>
+                  </collectionProp>
+                </collectionProp>
+                <boolProp name="UserParameters.per_iteration">false</boolProp>
+              </UserParameters>
+              <hashTree/>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="67791721">&quot;code&quot;:0</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+            <TestAction guiclass="TestActionGui" testclass="TestAction" testname="等待10s" enabled="true">
+              <intProp name="ActionProcessor.action">1</intProp>
+              <intProp name="ActionProcessor.target">0</intProp>
+              <stringProp name="ActionProcessor.duration">10000</stringProp>
+            </TestAction>
+            <hashTree/>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="判断是否已经出库" enabled="true">
+              <stringProp name="dataSource">RDC</stringProp>
+              <stringProp name="query">select package_no from t_out_bound_batch_package where package_no=&apos;${bagId}&apos;;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="queryType">Select Statement</stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+            </JDBCSampler>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-1291154127">${bagId}</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+              </ResponseAssertion>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>true</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="工作台" enabled="true">
+      <boolProp name="WorkBench.save">true</boolProp>
+    </WorkBench>
+    <hashTree/>
+  </hashTree>
+</jmeterTestPlan>
