@@ -77,7 +77,6 @@ class AssertTool(object):
                     act_value = value
                     exp_value = eval(exp_value)
             else:
-                act_value = json.loads(act_value)
                 exp_value = json.loads(exp_value)
                 for key in eval(ignore):
                     if act_value.__contains__(key):
@@ -86,9 +85,9 @@ class AssertTool(object):
             print('act_value: ', act_value)
             print('exp_value: ', exp_value)
             if act_value == exp_value:
-                assert True
+                return True
             else:
-                assert False
+                return False
         except Exception as e:
             assert False, "校验出错"
 

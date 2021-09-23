@@ -59,7 +59,7 @@ class ImportOrder(object):
         response1 = self.request.get_request(
             port="", path="/v1/frontend/importOrder",
             method="post",
-            data=str(data1),
+            data=data1,
             headers='{"Content-Type": "form-data"}', file_key="file", file_value=self.file)
 
         print(response1)
@@ -79,12 +79,16 @@ class ImportOrder(object):
 if __name__ == '__main__':
     # 2839139448256143,http://52.175.52.220
     # 8772502972352061,http://isdedis.eastasia.cloudapp.azure.com:18080
-    env = "pre"
+    env = "stage"
     if env == "test":
         url = "http://isdedis.eastasia.cloudapp.azure.com:18080"
-        isid = "8772502972352061"
+        isid = "2220040455552376" #2220040455552376,8772502972352061
     elif env == "pre":
         url = "http://52.175.52.220"
         isid = "2668758785280976"
+    elif env == "stage":
+        url = "https://stage.edisebay.com"
+        isid = "2835151170368532"
+        #
     ImportOrder(url, isid, rootPath + "\\data\\order.xlsx",
-                4, "DK").import_order()
+                4, "ES").import_order()

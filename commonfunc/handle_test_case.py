@@ -187,25 +187,30 @@ class HandleTestCase(object):
         return self.result_as
 
     def get_tracking_num(self):
-        for i in self.result_as:
-            if "未使用" in i.values():
-                print(list(i.keys())[list(i.values()).index("未使用")])
-                return list(i.keys())[list(i.values()).index("未使用")]
+        # for i in self.result_as:
+        #     if "未使用" in i.values():
+        #         print(list(i.keys())[list(i.values()).index("未使用")])
+        #         return list(i.keys())[list(i.values()).index("未使用")]
+
+        return str(CreatData.get_num(int(13)))
 
     def update_tracking_num(self, tracking_number):
-        for i in self.result_as:
-            if tracking_number in i.keys():
-                i[tracking_number] = "已使用"
-                break
+        # for i in self.result_as:
+        #     if tracking_number in i.keys():
+        #         i[tracking_number] = "已使用"
+        #         break
+        pass
 
     def update_tracking_file(self, tracking_number):
-        for i in self.result_as:
-            if tracking_number in i.keys():
-                i[tracking_number] = "已使用"
-                break
+        # for i in self.result_as:
+        #     if tracking_number in i.keys():
+        #         i[tracking_number] = "已使用"
+        #         break
+        pass
 
 
-if __name__ == '__main__':
-    qqq = HandleTestCase()
-    test = '{"data":{"hoauBagId":"$chinese+20","packageInfoList":[{"trackingNumber":"$trackingNumber+","orderReference":"$num+10","itemInfoList":[{"skuDesc":"$varchar+10","skuDescCn":"$chinese+10"}]}]}}'
-    print(qqq.get_deal_params("test", test))
+
+# if __name__ == '__main__':
+#     qqq = HandleTestCase()
+#     test = '{"data":{"hoauBagId":"$chinese+20","packageInfoList":[{"trackingNumber":"$trackingNumber+","orderReference":"$num+10","itemInfoList":[{"skuDesc":"$varchar+10","skuDescCn":"$chinese+10"}]}]}}'
+#     print(qqq.get_deal_params("test", test))

@@ -69,8 +69,8 @@ def special_as_case(origin_data, package_num):
                     "link": "www.ebay.com"
                 }
             ]
-        }) % (track, CreatData.get_num(10))
-        tracking_nums.append(track)
+        }) % (track, str(CreatData.get_num(10)))
+        tracking_nums.append(str(track))
         origin_data["data"]["packageInfoList"].append(eval(data))
     print(origin_data)
     return origin_data, tracking_nums
@@ -81,7 +81,7 @@ def get_test():
         "data": {
             "project": "eBay",
             "businessCode": "LM",
-            "hoauBagId": "12312332111112",
+            "hoauBagId": "1231233211234",
             "lastMileBagId": "655DE90000010",
             "bagWeight": 50,
             "vehicleNumber": "京12",
@@ -89,8 +89,11 @@ def get_test():
             "driverContactPhone": "12",
             "mawb": "526-58571376",
             "flightNumber": "MAWB(526-58571376)-FlightNumber(CA321)-ETD(2017-08-03T22:00:00+0800)-ETA(2017-08-04T10:00:00+0800)-DEPT(HKG)-ARR(LAX)-ATD(2017-08-03T22:00:00+0800)-ATA(2017-08-04T10:00:00+0800)",
-            "lineHaulVendorName": "ASD",
-            "lastMileCountry": "MX",
+            "lineHaulVendorName": "MC",
+            "lineHaulCountry": "CN",
+            "lineHaulGateWay": "HKG",
+            "lineHaulServiceCode": "FAST",
+            "lastMileCountry": "NL",
             "lastMileGateWay": "TLV",
             "lastMileLocation": "ASD-TLV仓",
             "lastMileServiceCode": "MXPACK",
@@ -104,16 +107,14 @@ def get_test():
     }
     handle = HandleTestCase()
     test_data, track = special_as_case(ori_data, 200)
-    req = RequestClient("http://10.39.232.54:8424")
+    req = RequestClient("http://10.39.232.52:8424")
     headers = {"Content-Type": "application/json"}
 
-    result = req.get_request(path="/jv-vendor/v1/confirmShipmentToCne", port="", method="post",
+    result = req.get_request(path="/jv-vendor/v1/confirmShipmentToMc", port="", method="post",
                              headers=headers,
                              params="", json_value=handle.get_deal_params("test", str(test_data)),
                              data="", file_value="")
     print(result)
 
     print(track)
-
-
 get_test()

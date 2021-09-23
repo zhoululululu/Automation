@@ -32,7 +32,7 @@ class ConfigJsonValue(object):
         self.oc_cursor = OCSqlStatement(env)
         self.rdc_cursor = RDCSqlStatement(sortation, env)
         self.ts_cursor = TaurusSqlStatement(self.env)
-        self.tracking_number = tracking_num  # GenerateTrackingNumber().generate_tracking_num(self.env, self.service_id)[0]
+        self.tracking_number =  GenerateTrackingNumber().generate_tracking_num(self.env, self.service_id)[0]
 
     def get_ship_order_data(self, package_total_weight, sku_value):
         """
@@ -56,8 +56,10 @@ class ConfigJsonValue(object):
                 self.service_id, package_total_weight, currency, sku_value, currency))
         # 额外操作: 如果带电的话，目前暂不支持多商品
         if self.battery == "1":
-            final_ship_order_data["data"]["packageInfoList"][0]["itemInfoList"][0]["batteryType"] = "PI969SEC2"
-            final_ship_order_data["data"]["packageInfoList"][0]["itemInfoList"][0]["elecQuaID"] = "5371610785472"
+            final_ship_order_data["data"]["isId"] = "2220040455552376"
+            final_ship_order_data["data"]["isMasterId"] = "2220040455552376"
+            final_ship_order_data["data"]["packageInfoList"][0]["itemInfoList"][0]["batteryType"] = "PI967SEC2"
+            final_ship_order_data["data"]["packageInfoList"][0]["itemInfoList"][0]["elecQuaID"] = "8375691546944"
         return self.tracking_number, final_ship_order_data
 
     def get_b_post_data(self, sortation_code):

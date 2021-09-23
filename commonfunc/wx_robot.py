@@ -23,7 +23,7 @@ class WeChat:
         self.path2 = "/cgi-bin/webhook/upload_media?key=474e9964-db83-4cc1-87b3-758be14da3e7&type=file"
 
     @staticmethod
-    def message(project, total, passing, succeed, failing, skip, error, error_list, file):
+    def message(project, total, passing, succeed, failing, error_list):
         """
         需要发送到企业微信的文案信息
         :param project:         项目名称
@@ -41,14 +41,13 @@ class WeChat:
         data = {
             "msgtype": "markdown",  # 消息类型，此时固定为markdown
             "markdown": {
-                "content": "# **各姐妹注意！自动化测试反馈**\n#### **请姐妹们注意，及时跟进！**\n"
+                "content": "# **（定时任务）自动化测试反馈**\n#### **请注意及时跟进！**\n"
                            "> 接口名称：<font color=\"info\">%s</font> \n"
                            "> 测试用例总数：<font color=\"info\">%s条</font>；测试用例通过率：<font color=\"info\">%s</font>\n"
                            "> **--------------------运行详情--------------------**\n"
                            "> **成功数：**<font color=\"info\">%s</font>\n**失败数：**<font color=\"warning\">%s</font>\n"
-                           "> **跳过数：**<font color=\"info\">%s</font>\n**错误数：**<font color=\"comment\">%s</font>\n"
                            "> **--------------------错误用例--------------------**\n" % (
-                               project, total, passing, succeed, failing, skip, error)}}
+                               project, total, passing, succeed, failing)}}
         for i in error_list:
             error_record = "> **路向：**<font color=\"warning\">%s</font>\n" % i
             data["markdown"]["content"] += error_record
@@ -57,20 +56,21 @@ class WeChat:
 
         return data
 
-    def send_message(self, project, total, passing, succeed, failing, skip, error, error_list, file):
+    def send_message(self, project, total, passing, succeed, failing, error_list, file):
         """
         发送文案信息
         :param project:         项目名称
-        :param end:             指定端[web、app、h5]
         :param total:           总计
         :param passing:         通过率
         :param succeed:         通过数
         :param failing:         失败数
         :param skip:            跳过数
         :param error:           错误数
+        :param file:
+        :param error_list:
         :return:
         """
-        send_result_data = self.message(project, total, passing, succeed, failing, skip, error, error_list, file)
+        send_result_data = self.message(project, total, passing, succeed, failing, error_list)
         print(send_result_data)
         upload_file_data = {'file': open(file, 'rb')}
         # 获取企业微信群机器人的url, 使用的python第三方库requests库发送的请求
@@ -91,11 +91,10 @@ class WeChat:
 
         return send_file
 
-
-if __name__ == '__main__':
-    lulu_robot = WeChat()
-    path = "/cgi-bin/webhook/send?key=474e9964-db83-4cc1-87b3-758be14da3e7"
-    path2 = "/cgi-bin/webhook/upload_media?key=474e9964-db83-4cc1-87b3-758be14da3e7&type=file"
-    file = rootPath + "\\testresults\\resultfile\\validation\\0913_validation_result.xls"
-    lulu_robot.send_message("validation", "33", "{:.2%}""".format(31 / 33), "31", "2", "0", "0", ["US美国路向", "SK斯洛伐克路向"],
-                            file)
+# if __name__ == '__main__':
+#     lulu_robot = WeChat()
+#     path = "/cgi-bin/webhook/send?key=474e9964-db83-4cc1-87b3-758be14da3e7"
+#     path2 = "/cgi-bin/webhook/upload_media?key=474e9964-db83-4cc1-87b3-758be14da3e7&type=file"
+#     file = rootPath + "\\testresults\\resultfile\\validation\\0913_validation_result.xls"
+#     lulu_robot.send_message("validation", "33", "{:.2%}""".format(31 / 33), "31", "2", "0", "0", ["US美国路向", "SK斯洛伐克路向"],
+#                             file)

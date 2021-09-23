@@ -20,7 +20,7 @@ if __name__ == '__main__':
     pytest批量运行测试case ，-m可单独运行特定的case
     生成结果文件，并生成压缩文件，发送email
     """
-    pytest.main(['-s', '-q', '--alluredir', rootPath + '/testresults/pytestresult/data', "-m=confirmShipment"])
+    pytest.main(['-s', '-q', '--alluredir', rootPath + '/testresults/pytestresult/data', "-m=validation"])
     subprocess.run(['allure', 'generate', rootPath + '/testresults/pytestresult/data', '-o',
                     rootPath + '/testresults/pytestresult/data/html', '--clean'], shell=True)
     # # 调用zip_file方法，生成压缩文件

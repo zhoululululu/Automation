@@ -12,12 +12,19 @@ import requests
 import mimetypes
 import json
 
+from requests.adapters import HTTPAdapter
+
 
 class RequestClient:
 
-    def __init__(self, url):
+    def __init__(self, url, pool_connections=10, pool_maxsize=10, max_retries=2):
         self.url = url
+        self.url = url
+        http_adapter = HTTPAdapter(pool_connections=pool_connections, pool_maxsize=pool_maxsize,
+                                   max_retries=max_retries)
         self.session = requests.session()
+        self.session.mount('http://', http_adapter)
+        self.session.mount('https://', http_adapter)
 
     @staticmethod
     def update_header(data, file_key, file_value):

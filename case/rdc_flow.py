@@ -48,11 +48,11 @@ class RdcFlow:
         logger.info("IS下单结果 : %s" % ship_order_response)
 
         # logger.info("******************IS同步订单至RDC中******************")
-        # self.status = SleepTool.wait_for_tracking_number(self.sortation, self.env, re_tracking_number)
-        # if self.status is True:
-        #     logger.info("******************IS同步订单至RDC成功******************")
-        # else:
-        #     logger.info("******************IS同步订单至RDC失败******************")
+        self.status = SleepTool.wait_for_tracking_number(self.sortation, self.env, re_tracking_number)
+        if self.status is True:
+            logger.info("******************IS同步订单至RDC成功******************")
+        else:
+            logger.info("******************IS同步订单至RDC失败******************")
 
         return re_tracking_number
 
@@ -211,21 +211,21 @@ class RdcFlow:
 
 
 if __name__ == '__main__':
-    num = 6
-    tracking_list, last_tracking_num, bag_list, exp = ['ES30000090543410001040001D0D'], [], [], []
-    for i in range(len(tracking_list)):
-        rdc_flow = RdcFlow("pre", "jx", "ES", "SE", "0", tracking_list[i])
-        # tracking_number = rdc_flow.ship_order(100, 1)
-        # tracking_list.append(tracking_number)
-        # rdc_flow.get_letter()
-        # if rdc_flow.status is True:
-        last_mile_tracking_number = rdc_flow.get_label(2000)
-        last_tracking_num.append(last_mile_tracking_number)
-        time.sleep(1)
-        bag_id = rdc_flow.bu_bag(2000)
-        bag_list.append(bag_id)
-        rdc_flow.real_weight(2000)
-        rdc_flow.out_package()
+    num = 1
+    tracking_list, last_tracking_num, bag_list, exp = [], [], [], []
+    for i in range(num):
+        rdc_flow = RdcFlow("test", "dg", "ES", "GR", "1", "")
+        tracking_number = rdc_flow.ship_order(1, 30)
+        tracking_list.append(tracking_number)
+        rdc_flow.get_letter()
+        if rdc_flow.status is True:
+            last_mile_tracking_number = rdc_flow.get_label(1)
+            last_tracking_num.append(last_mile_tracking_number)
+            time.sleep(1)
+            bag_id = rdc_flow.bu_bag(1)
+        # bag_list.append(bag_id)
+        # rdc_flow.real_weight(2000)
+        # rdc_flow.out_package()
         # else:
         #     logger.info("订单同步失败，请检查订单")
         # exp.append({last_mile_tracking_number: tracking_number})

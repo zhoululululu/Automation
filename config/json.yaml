@@ -274,14 +274,14 @@ consignee:
   IL:
     consigneeState: "afddffd"
     consigneeCity: "Lancaster"
-    consigneeZipCode: "90525"
+    consigneeZipCode: "4529201"
     address: "27 Sawgrass Lane"
     address2: ""
 
   MX:
     consigneeState: "afddffd"
     consigneeCity: "Lancaster"
-    consigneeZipCode: "89018"
+    consigneeZipCode: "01028"
     address: "27 Sawgrass Lane"
     address2: ""
 
@@ -316,6 +316,6 @@ consignee:
   ES:
     consigneeState: "Pennsylvania"
     consigneeCity: "erie"
-    consigneeZipCode: "16505"
+    consigneeZipCode: "90007"
     address: "12571 Stillwater Crk"
-    address2: "ssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsadasssssdsa"
+    address2: "ssssdsadas"

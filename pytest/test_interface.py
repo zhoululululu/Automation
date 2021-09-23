@@ -22,8 +22,7 @@ rootPath = os.path.split(curPath)[0]
 
 class TestInterface(object):
     global file_name, all_data, test_case
-    # file_name = rootPath + "\\data\\" + "as\\ascendia-case.xlsx"
-    file_name = rootPath + "\\data\\" + "cne\\cne-case.xlsx"
+    file_name = rootPath + "\\data\\" + "mi\\mi-case.xlsx"
     all_data = FileManage.file_to_dict(file_name)
     test_case = all_data.get("case_manage").fillna("").values
 
@@ -45,7 +44,7 @@ class TestInterface(object):
         self.des_list, self.data_list, self.result_list = [], [], []
 
     @pytest.mark.parametrize(
-        "test_case_id, model, description, path, port, method, header, params_type,data, json_value,params, file_key, request_file_name, collection_return_data, collect_file, ignore_data, check_data, check_type, exp_data, work_status",
+        "test_case_id, model, description, path, port, method, header, params_type,data, json_value,params, file_key, request_file_name, collection_return_data, collect_file, ignore_data, check_data, check_type, exp_data, exp_desc,work_status",
         test_case)  # 参数初始化
     @allure.story("confirmShipment")  # story描述
     @allure.suite("{model}")  # suite描述
@@ -55,7 +54,7 @@ class TestInterface(object):
     def test_api(self, test_case_id, model, description, path, port, method, header, params_type, data, json_value,
                  params,
                  file_key, request_file_name, collection_return_data, collect_file, ignore_data, check_data, check_type,
-                 exp_data, work_status):
+                 exp_data, exp_desc, work_status):
         if work_status:
             [path, port, headers] = self.handle.get_relation_value(all_data, [path, port, header],
                                                                    ["path", "port", "header"])
@@ -71,7 +70,15 @@ class TestInterface(object):
                 self.handle.update_tracking_num(
                     self.handle.get_deal_params(self.env, json_value)["data"]["packageInfoList"][0][
                         "trackingNumber"])
-            AssertTool().compare_dict(result, exp_data, ignore_data, check_data)
+            if "OR" in exp_data:
+                result_list = []
+                exp_data_list = exp_data.split("OR")
+                for i in exp_data_list:
+                    result_list.append(AssertTool().compare_dict(result, i, ignore_data, check_data))
+                result = True if True in result_list else False
+            else:
+                result = AssertTool().compare_dict(result, exp_data, ignore_data, check_data)
+            assert result
             if collection_return_data != "":
                 pass
 
@@ -84,5 +91,5 @@ class TestInterface(object):
             {"description": self.des_list, "data": self.data_list, "result": self.result_list})
         data_result.to_excel(
             rootPath + "\\testresults\\resultfile\\" + str(
-                DateTimeTool.get_now_time_stamp_with_millisecond()) + "result.xls")
+                DateTimeTool.get_now_date()) + "result.xls")
         # pass
